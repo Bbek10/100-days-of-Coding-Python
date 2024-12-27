@@ -46,22 +46,27 @@ def add_password():
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Please do not make any fields empty")
     else: 
-        with open("passwords.json", "r") as pw_file:
-            #Reading old data
-            data = json.load(fp=pw_file)
-            #updating old data with new data
-            data.update(new_data)
-            # print(data) #has type of dictionary
-        with open("passwords.json","w") as pw_file:
-            #saving updated data
-            json.dump(data, pw_file, indent=4)
-
-            website_entry.delete(0, END)
-            password_entry.delete(0, END)
+            try:    
+                with open("passwords.json", "r") as pw_file:
+                    #Reading old data
+                    data = json.load(fp=pw_file)
+            except FileNotFoundError:
+                with open("passwords.json", "w") as pw_file:
+                     json.dump(new_data,pw_file, indent=4)
+            else:
+                #updating old data with new data
+                data.update(new_data)
+                # print(data) #has type of dictionary
+                with open("passwords.json","w") as pw_file:
+                    #saving updated data
+                    json.dump(data, pw_file, indent=4)
+            finally:
+                website_entry.delete(0, END)
+                password_entry.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
-window.title("Password Generator")
+window.title("Password Generator") 
 window.config(padx=20, pady=20)
 
 canvas = Canvas(width=200, height=200, highlightthickness=0)
