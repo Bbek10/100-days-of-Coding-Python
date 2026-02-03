@@ -43,7 +43,7 @@ class DataManager:
                     "Authorization": os.getenv("BEARER_TOKEN")
                 }
             )
-            print(response.text)
+            return (response.text)
 
     
 

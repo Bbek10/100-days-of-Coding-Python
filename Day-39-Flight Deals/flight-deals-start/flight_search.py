@@ -84,12 +84,16 @@ class FlightSearch:
         print(f"Status code {response.status_code}. Airport IATA: {response.text}")
         try:
             code = response.json()["data"][0]["iataCode"]
-        except IndexError
+        except IndexError:
             print(f"No airport code found for {city_name}. Setting as N/A.")
             code = "N/A"
         except KeyError:
             print(f"No airport code found for {city_name}. Setting as Not Found.")
             code = "Not Found"
-
         return code
-       
+
+#This file will need to use the DataManager,FlightSearch, FlightData, NotificationManager classes to achieve the program requirements.
+
+    def find_cheapest_flight(self, origin_city_code, destination_city_code, from_time, to_time):
+        # To be implemented in the next steps
+        pass
