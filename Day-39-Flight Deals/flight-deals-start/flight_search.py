@@ -1,6 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
+import datetime as datetime
+
 
 load_dotenv()
 IATA_ENDPOINT = "https://test.api.amadeus.com/v1/reference-data/locations"
@@ -91,9 +93,3 @@ class FlightSearch:
             print(f"No airport code found for {city_name}. Setting as Not Found.")
             code = "Not Found"
         return code
-
-#This file will need to use the DataManager,FlightSearch, FlightData, NotificationManager classes to achieve the program requirements.
-
-    def find_cheapest_flight(self, origin_city_code, destination_city_code, from_time, to_time):
-        # To be implemented in the next steps
-        pass
